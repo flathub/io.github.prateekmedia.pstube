@@ -24,7 +24,6 @@ modules:
       - cp -R pstube/usr/bin/ /app/pstube
       - mkdir -p /app/bin/ /app/share/
       - cp -R pstube/usr/share/ /app
-      - sed -i 's/<id>pstube/<id>io.github.prateekmedia.pstube/' /app/share/metainfo/pstube.xml
       - ln -s /app/pstube/pstube /app/bin/pstube
     sources:
       - type: archive
@@ -39,3 +38,5 @@ modules:
           version-query: .tag_name
           url-query: .assets[] | select(.name=="pstube-linux-" + $version + "-x86_64.tar.gz")
             | .browser_download_url
+      - type: patch
+        path: pstube.xml.patch
