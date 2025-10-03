@@ -1,0 +1,28 @@
+--- a/usr/share/metainfo/pstube.xml	2022-06-22 04:59:28.000000000 -0500
++++ b/usr/share/metainfo/pstube.xml	2025-10-02 21:52:48.467457099 -0500
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <component type="desktop-application">
+-	<id>pstube</id>
++	<id>io.github.prateekmedia.pstube</id>
+ 	<name>PsTube</name>
+ 	<summary>Watch and download videos without ads</summary>
+ 	<metadata_license>CC0-1.0</metadata_license>
+@@ -31,10 +31,14 @@
+ 		</ul>
+ 	</description>
+ 	<screenshots>
++		<screenshot type="default">
++			<image>https://github.com/prateekmedia/pstube/blob/2.0.0/assets/screenshots/home-desktop.jpg?raw=true</image>
++		</screenshot>
++		<screenshot>
++		    <image>https://github.com/prateekmedia/pstube/blob/2.0.0/assets/screenshots/search-desktop.jpg?raw=true</image>
++		</screenshot>
+ 		<screenshot>
+-			<image type="source">https://github.com/prateekmedia/pstube/blob/2.0.0/assets/screenshots/home-desktop.jpg?raw=true</image>
+-			<image type="source">https://github.com/prateekmedia/pstube/blob/2.0.0/assets/screenshots/search-desktop.jpg?raw=true</image>
+-			<image type="source">https://github.com/prateekmedia/pstube/blob/2.0.0/assets/screenshots/video-desktop.jpg?raw=true</image>
++		    <image>https://github.com/prateekmedia/pstube/blob/2.0.0/assets/screenshots/video-desktop.jpg?raw=true</image>
+ 		</screenshot>
+ 	</screenshots>
+ 	<launchable type="desktop-id">pstube.desktop</launchable>
