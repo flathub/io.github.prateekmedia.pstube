@@ -1,5 +1,5 @@
---- a/usr/share/metainfo/pstube.xml	2022-06-22 04:59:28.000000000 -0500
-+++ b/usr/share/metainfo/pstube.xml	2025-10-02 21:52:48.467457099 -0500
+--- a/pstube/usr/share/metainfo/pstube.xml	2022-06-22 04:59:28.000000000 -0500
++++ b/pstube/usr/share/metainfo/pstube.xml	2025-10-02 21:52:48.467457099 -0500
 @@ -1,6 +1,6 @@
  <?xml version="1.0" encoding="UTF-8"?>
  <component type="desktop-application">
