@@ -39,3 +39,5 @@ modules:
           version-query: .tag_name
           url-query: .assets[] | select(.name=="pstube-linux-" + $version + "-x86_64.tar.gz")
             | .browser_download_url
+      - type: patch
+        path: fix-appdata.patch
