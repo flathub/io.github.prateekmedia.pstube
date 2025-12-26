@@ -1,0 +1,55 @@
+From 1b7e5fbcaa0d319edc38590b922f46fcbf1cff0e Mon Sep 17 00:00:00 2001
+From: Sabri Ünal <yakushabb@gmail.com>
+Date: Fri, 26 Dec 2025 17:17:04 +0300
+Subject: [PATCH] Fix appdata papercuts
+
+---
+ pstube/usr/share/metainfo/pstube.xml | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
+
+diff --git a/pstube/usr/share/metainfo/pstube.xml b/usr/share/metainfo/pstube.xml
+index 63079c4..88817ed 100644
+--- a/pstube/usr/share/metainfo/pstube.xml
++++ b/pstube/usr/share/metainfo/pstube.xml
+@@ -18,7 +18,7 @@
+ 		<ul>
+ 			<li>Beautiful user interface</li>
+ 			<li>Lightweight and fast</li>
+-            <li>No Login Required</li>
++			<li>No Login Required</li>
+ 			<li>Keep your liked videos and comments</li>
+ 			<li>Playlists support</li>
+ 			<li>Download videos, audios and thumbnails</li>
+@@ -31,22 +31,27 @@
+ 		</ul>
+ 	</description>
+ 	<screenshots>
+-		<screenshot>
++		<screenshot type="default">
+ 			<image type="source">https://github.com/prateekmedia/pstube/blob/2.0.0/assets/screenshots/home-desktop.jpg?raw=true</image>
++		</screenshot>
++		<screenshot>
+ 			<image type="source">https://github.com/prateekmedia/pstube/blob/2.0.0/assets/screenshots/search-desktop.jpg?raw=true</image>
++		</screenshot>
++		<screenshot>
+ 			<image type="source">https://github.com/prateekmedia/pstube/blob/2.0.0/assets/screenshots/video-desktop.jpg?raw=true</image>
+ 		</screenshot>
+ 	</screenshots>
+ 	<launchable type="desktop-id">pstube.desktop</launchable>
+ 	<releases>
++		<release version="2.0.6" date="2022-07-14"/>
+ 		<release version="2.0.0" date="2022-03-25"/>
+ 		<release version="1.1.0" date="2021-01-07"/>
+ 		<release version="1.0.0" date="2021-12-20"/>
+ 		<release version="0.6.0" date="2021-10-18"/>
+ 		<release version="0.5.0" date="2021-09-29"/>
+ 		<release version="0.4.5" date="2021-09-28"/>
+ 		<release version="0.4.0" date="2021-09-28"/>
+ 	</releases>
+-	<content_rating type="oars-1.0" />
++	<content_rating type="oars-1.1" />
+ 	<update_contact>pankajsunal123@gmail.com</update_contact>
+ </component>
+--
+libgit2 1.7.2
+

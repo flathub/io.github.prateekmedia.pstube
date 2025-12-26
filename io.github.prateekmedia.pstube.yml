@@ -29,9 +29,9 @@ modules:
       - type: archive
         only-arches:
           - x86_64
-        url: https://github.com/prateekmedia/pstube/releases/download/2.0.0/pstube-linux-2.0.0-x86_64.tar.gz
+        url: https://github.com/prateekmedia/pstube/releases/download/2.6.0/pstube-linux-2.6.0-x86_64.tar.gz
         dest: pstube
-        sha256: 2c9a7ddf13c97349581a3ded5d7808e02115086ded5b6b50554810d4ad4ad718
+        sha256: 29a5bba839878b694a4d223c26ede28ccfc380f8acf3ae217ab8f9681c7d6b86
         x-checker-data:
           type: json
           url: https://api.github.com/repos/prateekmedia/pstube/releases/latest
@@ -39,4 +39,4 @@ modules:
           url-query: .assets[] | select(.name=="pstube-linux-" + $version + "-x86_64.tar.gz")
             | .browser_download_url
       - type: patch
-        path: pstube.xml.patch
+        path: fix-appdata.patch
