@@ -131,6 +131,7 @@ modules:
       - cp -a usr/share/. ${FLATPAK_DEST}/share/ && rm -rf usr/share
       - mkdir -p ${FLATPAK_DEST}/share/metainfo
       - cp pstube.appdata.xml ${FLATPAK_DEST}/share/metainfo/pstube.xml
+      - cp pstube.desktop ${FLATPAK_DEST}/share/applications/pstube.desktop
       - mkdir -p /app/bin/
       - ln -s ${FLATPAK_DEST}/share/pstube/pstube /app/bin/pstube
     sources:
@@ -148,3 +149,5 @@ modules:
             $version + "/pstube-" + $version + "-linux-x86_64.deb"'
       - type: file
         path: pstube.appdata.xml
+      - type: file
+        path: pstube.desktop

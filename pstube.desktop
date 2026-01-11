@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Version=3.1.1+7
+Name=PsTube
+GenericName=PsTube
+Icon=pstube
+Exec=pstube %U
+Categories=Utility;
+Keywords=FluTube;YouTube;Piped;Watch;
+StartupNotify=false
+Terminal=false
