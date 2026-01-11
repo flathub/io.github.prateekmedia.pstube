@@ -146,7 +146,4 @@ modules:
           version-query: .tag_name
           url-query: '"https://github.com/prateekmedia/pstube/releases/download/" +
             $version + "/pstube-" + $version + "-linux-x86_64.deb"'
-      - type: file
-        path: pstube.appdata.xml
-      - type: file
-        path: pstube.desktop
+
