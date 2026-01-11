@@ -130,15 +130,14 @@ modules:
       - bsdtar --to-stdout -xf pstube.deb data.* | bsdtar -xf -
       - cp -a usr/share/. ${FLATPAK_DEST}/share/ && rm -rf usr/share
       - mkdir -p ${FLATPAK_DEST}/share/metainfo
-      - cp pstube.appdata.xml ${FLATPAK_DEST}/share/metainfo/pstube.xml
-      - cp pstube.desktop ${FLATPAK_DEST}/share/applications/pstube.desktop
+      - sed -i 's/<id>pstube/<id>io.github.prateekmedia.pstube/' ${FLATPAK_DEST}/share/applications/pstube.xml
       - mkdir -p /app/bin/
       - ln -s ${FLATPAK_DEST}/share/pstube/pstube /app/bin/pstube
     sources:
       - type: file
         only-arches:
           - x86_64
-        url: https://github.com/prateekmedia/pstube/releases/download/3.1.1/pstube-3.1.1-linux-x86_64.deb
+        url: https://github.com/prateekmedia/pstube/releases/download/3.1.2/pstube-3.1.2-linux-x86_64.deb
         sha256: b568aabb4815265f7ad74c5149dcd9fa6b1bd3af89845880d3a583c18f905ce8
         dest-filename: pstube.deb
         x-checker-data:
