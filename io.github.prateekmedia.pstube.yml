@@ -130,16 +130,16 @@ modules:
       - bsdtar --to-stdout -xf pstube.deb data.* | bsdtar -xf -
       - cp -a usr/share/. ${FLATPAK_DEST}/share/ && rm -rf usr/share
       - mkdir -p ${FLATPAK_DEST}/share/metainfo
-      - cp pstube.appdata.xml ${FLATPAK_DEST}/share/metainfo/pstube.xml
-      - cp pstube.desktop ${FLATPAK_DEST}/share/applications/pstube.desktop
+      - sed -i 's/<id>pstube/<id>io.github.prateekmedia.pstube/' ${FLATPAK_DEST}/share/metainfo/pstube.xml
+      - sed -i '/Version/d' ${FLATPAK_DEST}/share/applications/pstube.desktop
       - mkdir -p /app/bin/
       - ln -s ${FLATPAK_DEST}/share/pstube/pstube /app/bin/pstube
     sources:
       - type: file
         only-arches:
           - x86_64
-        url: https://github.com/prateekmedia/pstube/releases/download/3.1.1/pstube-3.1.1-linux-x86_64.deb
-        sha256: b568aabb4815265f7ad74c5149dcd9fa6b1bd3af89845880d3a583c18f905ce8
+        url: https://github.com/prateekmedia/pstube/releases/download/3.1.2/pstube-3.1.2-linux-x86_64.deb
+        sha256: 83f5c0043c82ae40fa01be1b817cf9ec01e9098b1981a358323e3078ecebd43e
         dest-filename: pstube.deb
         x-checker-data:
           type: json
@@ -147,7 +147,4 @@ modules:
           version-query: .tag_name
           url-query: '"https://github.com/prateekmedia/pstube/releases/download/" +
             $version + "/pstube-" + $version + "-linux-x86_64.deb"'
-      - type: file
-        path: pstube.appdata.xml
-      - type: file
-        path: pstube.desktop
+
