@@ -91,7 +91,7 @@ modules:
       - type: archive
         only-arches:
           - x86_64
-        url: https://github.com/prateekmedia/pstube/releases/download/3.1.1/pstube-linux-3.1.1-x86_64.zip
+        url: https://github.com/prateekmedia/pstube/releases/download/3.1.1/pstube-3.1.1-linux-x86_64.zip
         dest: pstube
         sha256: 6f01de958377d90e821e726fcd771fcb1e2328a91ad97b874d06c9b0802ab9b8
         x-checker-data:
