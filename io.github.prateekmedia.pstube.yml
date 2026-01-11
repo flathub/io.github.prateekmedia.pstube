@@ -138,7 +138,7 @@ modules:
         only-arches:
           - x86_64
         url: https://github.com/prateekmedia/pstube/releases/download/3.1.2/pstube-3.1.2-linux-x86_64.deb
-        sha256: b568aabb4815265f7ad74c5149dcd9fa6b1bd3af89845880d3a583c18f905ce8
+        sha256: 83f5c0043c82ae40fa01be1b817cf9ec01e9098b1981a358323e3078ecebd43e
         dest-filename: pstube.deb
         x-checker-data:
           type: json
