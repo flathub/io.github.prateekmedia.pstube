@@ -1,6 +1,6 @@
 app-id: io.github.prateekmedia.pstube
 runtime: org.freedesktop.Platform
-runtime-version: '21.08'
+runtime-version: '25.08'
 sdk: org.freedesktop.Sdk
 rename-icon: pstube
 rename-appdata-file: pstube.xml
@@ -18,26 +18,136 @@ finish-args:
   - --talk-name=org.freedesktop.Notifications
   - --system-talk-name=org.freedesktop.NetworkManager
 modules:
+  - name: libmpv
+    cleanup:
+      - /share/bash-completion
+      - /share/fish
+      - /share/zsh
+      - /share/doc
+      - /share/icons
+      - /share/applications
+    buildsystem: meson
+    config-opts:
+      - -Dlibmpv=true
+      - -Dlua=enabled
+      - -Ddebug=false
+      - -Dbuild-date=false
+      - -Dalsa=disabled
+      - -Dmanpage-build=disabled
+    sources:
+      - type: archive
+        url: https://github.com/mpv-player/mpv/archive/refs/tags/v0.41.0.tar.gz
+        sha256: ee21092a5ee427353392360929dc64645c54479aefdb5babc5cfbb5fad626209
+        x-checker-data:
+          type: anitya
+          project-id: 5348
+          stable-only: true
+          url-template: https://github.com/mpv-player/mpv/archive/refs/tags/v$version.tar.gz
+    modules:
+      - name: luajit
+        no-autogen: true
+        make-args:
+          - BUILDMODE=dynamic
+          - PREFIX=${FLATPAK_DEST}
+        make-install-args:
+          - PREFIX=${FLATPAK_DEST}
+        sources:
+          - type: git
+            url: https://github.com/openresty/luajit2.git
+            tag: v2.1-20251229
+            commit: 87e2724a33bf524d0995626d404d0ea830a0c619
+            x-checker-data:
+              type: git
+              tag-pattern: ^v([\d.-]+)$
+              stable-only: false
+        cleanup:
+          - /bin
+
+      - name: libplacebo
+        buildsystem: meson
+        config-opts:
+          - -Ddemos=false
+        cleanup:
+          - /include
+          - /lib/pkgconfig
+        sources:
+          - type: git
+            url: https://github.com/haasn/libplacebo.git
+            tag: v7.351.0
+            commit: 3188549fba13bbdf3a5a98de2a38c2e71f04e21e
+            x-checker-data:
+              type: git
+              tag-pattern: ^v([\d.]+)$
+          - type: patch
+            path: vulkan-python-xml.patch
+
+      - name: libXpresent
+        buildsystem: autotools
+        sources:
+          - type: archive
+            url: https://xorg.freedesktop.org/archive/individual/lib/libXpresent-1.0.2.tar.xz
+            sha256: 4e5b21b4812206a4b223013606ae31170502c1043038777a1ef8f70c09d37602
+            x-checker-data:
+              type: anitya
+              project-id: 17166
+              stable-only: true
+              url-template: https://xorg.freedesktop.org/archive/individual/lib/libXpresent-$version.tar.xz
+
+      - name: libass
+        config-opts:
+          - --disable-static
+        sources:
+          - type: archive
+            url: https://github.com/libass/libass/releases/download/0.17.4/libass-0.17.4.tar.gz
+            sha256: a886b3b80867f437bc55cff3280a652bfa0d37b43d2aff39ddf3c4f288b8c5a8
+            x-checker-data:
+              type: anitya
+              project-id: 1560
+              stable-only: true
+              url-template: https://github.com/libass/libass/releases/download/$version/libass-$version.tar.gz
+
+      - name: uchardet
+        buildsystem: cmake-ninja
+        config-opts:
+          - -DCMAKE_BUILD_TYPE=Release
+          - -DBUILD_STATIC=0
+          - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
+        cleanup:
+          - /bin
+        sources:
+          - type: archive
+            url: https://www.freedesktop.org/software/uchardet/releases/uchardet-0.0.8.tar.xz
+            sha256: e97a60cfc00a1c147a674b097bb1422abd9fa78a2d9ce3f3fdcc2e78a34ac5f0
+            x-checker-data:
+              type: anitya
+              project-id: 9265
+              stable-only: true
+              url-template: https://www.freedesktop.org/software/uchardet/releases/uchardet-$version.tar.xz
+
   - name: pstube
     buildsystem: simple
     build-commands:
-      - cp -R pstube/usr/bin/ /app/pstube
-      - mkdir -p /app/bin/ /app/share/
-      - cp -R pstube/usr/share/ /app
-      - sed -i 's/<id>pstube/<id>io.github.prateekmedia.pstube/' /app/share/metainfo/pstube.xml
-      - ln -s /app/pstube/pstube /app/bin/pstube
+      - bsdtar --to-stdout -xf pstube.deb data.* | bsdtar -xf -
+      - cp -a usr/share/. ${FLATPAK_DEST}/share/ && rm -rf usr/share
+      - mkdir -p ${FLATPAK_DEST}/share/metainfo
+      - cp pstube.appdata.xml ${FLATPAK_DEST}/share/metainfo/pstube.xml
+      - cp pstube.desktop ${FLATPAK_DEST}/share/applications/pstube.desktop
+      - mkdir -p /app/bin/
+      - ln -s ${FLATPAK_DEST}/share/pstube/pstube /app/bin/pstube
     sources:
-      - type: archive
+      - type: file
         only-arches:
           - x86_64
-        url: https://github.com/prateekmedia/pstube/releases/download/2.0.0/pstube-linux-2.0.0-x86_64.tar.gz
-        dest: pstube
-        sha256: 2c9a7ddf13c97349581a3ded5d7808e02115086ded5b6b50554810d4ad4ad718
+        url: https://github.com/prateekmedia/pstube/releases/download/3.1.1/pstube-3.1.1-linux-x86_64.deb
+        sha256: b568aabb4815265f7ad74c5149dcd9fa6b1bd3af89845880d3a583c18f905ce8
+        dest-filename: pstube.deb
         x-checker-data:
           type: json
           url: https://api.github.com/repos/prateekmedia/pstube/releases/latest
           version-query: .tag_name
-          url-query: .assets[] | select(.name=="pstube-linux-" + $version + "-x86_64.tar.gz")
-            | .browser_download_url
-      - type: patch
-        path: fix-appdata.patch
+          url-query: '"https://github.com/prateekmedia/pstube/releases/download/" +
+            $version + "/pstube-" + $version + "-linux-x86_64.deb"'
+      - type: file
+        path: pstube.appdata.xml
+      - type: file
+        path: pstube.desktop
