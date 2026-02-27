@@ -54,8 +54,8 @@ modules:
         sources:
           - type: git
             url: https://github.com/openresty/luajit2.git
-            tag: v2.1-20251229
-            commit: 87e2724a33bf524d0995626d404d0ea830a0c619
+            tag: v2.1-20260227
+            commit: 928290a470d35eb01324d5275b22fb86b13602a2
             x-checker-data:
               type: git
               tag-pattern: ^v([\d.-]+)$
@@ -73,8 +73,8 @@ modules:
         sources:
           - type: git
             url: https://github.com/haasn/libplacebo.git
-            tag: v7.351.0
-            commit: 3188549fba13bbdf3a5a98de2a38c2e71f04e21e
+            tag: v7.360.0
+            commit: b2ea27dceb6418aabfe9121174c6dbb232942998
             x-checker-data:
               type: git
               tag-pattern: ^v([\d.]+)$
@@ -143,6 +143,6 @@ modules:
           type: json
           url: https://api.github.com/repos/prateekmedia/pstube/releases/latest
           version-query: .tag_name
-          url-query: '"https://github.com/prateekmedia/pstube/releases/download/" +
-            $version + "/pstube-" + $version + "-linux-x86_64.deb"'
+          url-query: '"https://github.com/prateekmedia/pstube/releases/download/"
+            + $version + "/pstube-" + $version + "-linux-x86_64.deb"'
 
