@@ -54,8 +54,8 @@ modules:
         sources:
           - type: git
             url: https://github.com/openresty/luajit2.git
-            tag: v2.1-20251229
-            commit: 87e2724a33bf524d0995626d404d0ea830a0c619
+            tag: v2.1-20260724
+            commit: 982cd8323eafd8604a9e5f2a916aa50b9f67d9ed
             x-checker-data:
               type: git
               tag-pattern: ^v([\d.-]+)$
@@ -73,8 +73,8 @@ modules:
         sources:
           - type: git
             url: https://github.com/haasn/libplacebo.git
-            tag: v7.351.0
-            commit: 3188549fba13bbdf3a5a98de2a38c2e71f04e21e
+            tag: v7.360.1
+            commit: cee9b076f2c63104ccfd497fa79c39a867293ec4
             x-checker-data:
               type: git
               tag-pattern: ^v([\d.]+)$
@@ -98,8 +98,8 @@ modules:
           - --disable-static
         sources:
           - type: archive
-            url: https://github.com/libass/libass/releases/download/0.17.4/libass-0.17.4.tar.gz
-            sha256: a886b3b80867f437bc55cff3280a652bfa0d37b43d2aff39ddf3c4f288b8c5a8
+            url: https://github.com/libass/libass/releases/download/0.17.5/libass-0.17.5.tar.gz
+            sha256: caab4b993dd7be6187c55623b789ed75dddefea6e65938af134637c732fe094a
             x-checker-data:
               type: anitya
               project-id: 1560
@@ -143,6 +143,6 @@ modules:
           type: json
           url: https://api.github.com/repos/prateekmedia/pstube/releases/latest
           version-query: .tag_name
-          url-query: '"https://github.com/prateekmedia/pstube/releases/download/" +
-            $version + "/pstube-" + $version + "-linux-x86_64.deb"'
+          url-query: '"https://github.com/prateekmedia/pstube/releases/download/"
+            + $version + "/pstube-" + $version + "-linux-x86_64.deb"'
 
